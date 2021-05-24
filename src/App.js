@@ -10,15 +10,13 @@ const App = () => {
   const [id, setID] = useState(0);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-let newPosts = ()=>{
-  setPosts([...posts,{userId:userId,id:id,title:title,body:body}]);
-}
-axios
-      .get(`https://jsonplaceholder.typicode.com/users`)
+  let newPosts = () => {
+    setPosts([...posts, { userId: userId, id: id, title: title, body: body }]);
+  };
 
   const result = posts.map((elem, i) => {
     // console.log(elem.body)
-    console.log(i)
+    console.log(i);
     return (
       <>
         {/* useState() */}
@@ -26,7 +24,6 @@ axios
           <p>BODY: {elem.body}</p>
           <p>title: {elem.title}</p>
         </div>
-        
       </>
     );
   });
@@ -34,14 +31,38 @@ axios
     <>
       <div>
         <h1>Blog App</h1>
-        </div>
-        <p>{result}</p>
-      
-      <button></button>
-        {/* <input onChange={}/>
-        <input onChange={}/>
-        <input onChange={}/>
-        <input onChange={}/> */}
+      </div>
+      <p>{result}</p>
+
+      <input
+        type="number"
+        placeholder="userId"
+        onChange={(e) => {
+          setuserId(e.target.value);
+        }}
+      />
+      <input
+        type="number"
+        placeholder="id"
+        onChange={(e) => {
+          setID(e.target.value);
+        }}
+      />
+      <input
+        type="text"
+        placeholder="title"
+        onChange={(e) => {
+          setTitle(e.target.value);
+        }}
+      />
+      <input
+        type="text"
+        placeholder="body"
+        onChange={(e) => {
+          setBody(e.target.value);
+        }}
+      />
+      <button onClick={newPosts}>click</button>
     </>
   );
 };
