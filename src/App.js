@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 // jsx
 const App = () => {
@@ -14,12 +15,16 @@ const App = () => {
     setPosts([...posts, { userId: userId, id: id, title: title, body: body }]);
   };
 
+  useEffect(() => {
+    axios.get(`https://jsonplaceholder.typicode.com/posts`).then((res) => {
+      setPosts(res.data);
+    });
+  }, []);
+
   const result = posts.map((elem, i) => {
-    // console.log(elem.body)
     console.log(i);
     return (
       <>
-        {/* useState() */}
         <div key={i}>
           <p>BODY: {elem.body}</p>
           <p>title: {elem.title}</p>
